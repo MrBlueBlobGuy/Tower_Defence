@@ -1,9 +1,9 @@
 # Tower Defence Game thingy
     
 Contents:
-- [Building](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/readme.md#Building)
-- [Running](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/readme.md#Running)
-- [Contributing](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/readme.md#Contributing)
+- [Building](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/README.md#Building)
+- [Running](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/README.md#Running)
+- [Contributing](https://github.com/MrBlueBlobGuy/Tower_Defence/blob/master/README.md#Contributing)
 
 ## Building
 make sure you have python [3.10+](https://www.python.org/downloads/) installed 
