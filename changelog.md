@@ -1,4 +1,4 @@
-## version 0.0.3
+## version 0.0.3.0
     - release(alpha)
         - added Input Manager
         - added Sprite Manager And Renderer
@@ -8,3 +8,7 @@
         - add some basic audio playing capacity
         - start game programming
         - clear app.py(maybe...)
+
+## version 0.0.3.1
+    - added GPL-3.0 license
+    
