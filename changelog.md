@@ -16,4 +16,7 @@
 
 ## version 0.0.3.2
     - added README.md
+
+## version 0.0.3.2(fix)
+    - fixed README.md
     
