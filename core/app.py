@@ -1,10 +1,7 @@
-import logging
 import sys
 import pygame
-
 from .Input import Input
 from .Sprite import Sprite
-
 
 class App:
     """Runtime Class For the application"""
@@ -46,7 +43,6 @@ class App:
         self.window = pygame.display.set_mode(self.size, pygame.RESIZABLE)
         pygame.display.set_caption(self.window_title)
 
-
     def start(self):
         """Run at the first frame before the loop starts"""
         self.Object = Sprite((255, 0, 0, 100), (20, 20), (0, 0), self.update_sprite_library)
@@ -56,11 +52,17 @@ class App:
               axis_negative_key=pygame.K_a,
               sprite_library_callback=self.update_input_dictionary)
 
+        Input(axis_name="Vertical",
+              axis_positive_key=pygame.K_s,
+              axis_negative_key=pygame.K_w,
+              sprite_library_callback=self.update_input_dictionary)
+
     def runtime(self):
         """Runs every frame
         Similar to 'Update'
         Recommended not to do much complex calculations"""
-        pass
+        self.Object.rect.x += self.get_input("Horizontal")*1.5
+        self.Object.rect.y += self.get_input("Vertical")*1.5
 
     def update_sprite_library(self, sprite_object: Sprite):
         self.AllSprites.add(sprite_object)
@@ -69,11 +71,12 @@ class App:
         self.Axis_dictionary[axis_name] = value
 
     def get_input(self, axis: str):
+        """Takes in axis and returns the axis value for that axis in that frame"""
         try:
             return self.Axis_dictionary[axis].value
-
         except KeyError as err:
-            pass
+            print(f"{err}")
+            return
 
     @staticmethod
     def check_exit():

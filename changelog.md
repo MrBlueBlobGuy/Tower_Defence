@@ -1,3 +1,5 @@
+# Changelog
+
 ## version 0.0.3.0
     - release(alpha)
         - added Input Manager
@@ -11,4 +13,7 @@
 
 ## version 0.0.3.1
     - added GPL-3.0 license
+
+## version 0.0.3.2
+    - added README.md
     
