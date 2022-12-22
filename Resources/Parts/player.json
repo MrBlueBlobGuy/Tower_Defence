@@ -1,0 +1,8 @@
+{
+  "type": "entity",
+  "controllable": true,
+  "max_entities_in_level": 1,
+  "is_spawn_periodic": false,
+  "spawn_period": 0,
+  "Entity_color": [255,0,0]
+}

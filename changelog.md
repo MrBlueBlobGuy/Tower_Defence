@@ -19,4 +19,7 @@
 
 ## version 0.0.3.2(fix)
     - fixed README.md
-    
+
+## version 0.0.3.3
+    - Bug fixes
+    - Added spawning mechanism (not implemented)

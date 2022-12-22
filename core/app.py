@@ -3,6 +3,7 @@ import pygame
 from .Input import Input
 from .Sprite import Sprite
 
+
 class App:
     """Runtime Class For the application"""
 
@@ -45,7 +46,7 @@ class App:
 
     def start(self):
         """Run at the first frame before the loop starts"""
-        self.Object = Sprite((255, 0, 0, 100), (20, 20), (0, 0), self.update_sprite_library)
+        self.Object = Sprite((255, 0, 0, 0), (20, 20), (0, 0), self.update_sprite_library)
 
         Input(axis_name="Horizontal",
               axis_positive_key=pygame.K_d,
@@ -61,8 +62,8 @@ class App:
         """Runs every frame
         Similar to 'Update'
         Recommended not to do much complex calculations"""
-        self.Object.rect.x += self.get_input("Horizontal")*1.5
-        self.Object.rect.y += self.get_input("Vertical")*1.5
+        self.Object.rect.x += self.get_input("Horizontal") * 1.5
+        self.Object.rect.y += self.get_input("Vertical") * 1.5
 
     def update_sprite_library(self, sprite_object: Sprite):
         self.AllSprites.add(sprite_object)
