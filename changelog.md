@@ -23,3 +23,7 @@
 ## version 0.0.3.3
     - Bug fixes
     - Added spawning mechanism (not implemented)
+
+## version 0.0.3.4
+    - Bug fixes
+    - Added Better Input Managing system (not implemented)
