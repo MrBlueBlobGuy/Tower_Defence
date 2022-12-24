@@ -49,14 +49,14 @@ class App:
         self.Object = Sprite((255, 0, 0, 0), (20, 20), (0, 0), self.update_sprite_library)
 
         Input(axis_name="Horizontal",
-              axis_positive_key=pygame.K_d,
-              axis_negative_key=pygame.K_a,
-              sprite_library_callback=self.update_input_dictionary)
+              axis_positive_key='d',
+              axis_negative_key='a',
+              input_library_callback=self.update_input_dictionary)
 
         Input(axis_name="Vertical",
-              axis_positive_key=pygame.K_s,
-              axis_negative_key=pygame.K_w,
-              sprite_library_callback=self.update_input_dictionary)
+              axis_positive_key="s",
+              axis_negative_key="w",
+              input_library_callback=self.update_input_dictionary)
 
     def runtime(self):
         """Runs every frame

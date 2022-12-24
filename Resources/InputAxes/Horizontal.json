@@ -1,0 +1,4 @@
+{ "axis_name":"Horizontal",
+  "axis_positive_key":"d",
+  "axis_negative_key":"a",
+  "sprite_library_callback":"self.update_input_dictionary"}
