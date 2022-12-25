@@ -27,3 +27,7 @@
 ## version 0.0.3.4
     - Bug fixes
     - Added Better Input Managing system (not implemented)
+
+## version 0.0.3.5
+    - Bug Fixes
+    - Added 'Install' script (Testing to be done)
