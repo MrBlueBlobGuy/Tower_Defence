@@ -1,6 +1,7 @@
 import pygame
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
@@ -32,17 +33,37 @@ class Input:
         'w': pygame.K_w,
         'x': pygame.K_x,
         'y': pygame.K_y,
-        'z': pygame.K_z
+        'z': pygame.K_z,
+        'end': pygame.K_END,
+        'up': pygame.K_UP,
+        'down': pygame.K_DOWN,
+        'left': pygame.K_LEFT,
+        'right': pygame.K_RIGHT
     }
     root_input_axes_folder = os.getenv('AXES_ROOT')
     input_axes_files_names = os.listdir(root_input_axes_folder)
     input_axes_files_paths = []
 
-    def __init__(self, axis_name: str, axis_positive_key, axis_negative_key, input_library_callback):
+    def __init__(self,
+                 axis_name: str,
+                 axis_positive_key,
+                 axis_negative_key,
+                 input_library_callback,
+                 alt_positive_key=None,
+                 alt_negative_key=None):
         self.axis_name = axis_name
         self.value = 0
-        self.axis_positive_key = self.KEYS[axis_positive_key]
-        self.axis_negative_key = self.KEYS[axis_negative_key]
+        try:
+            self.axis_positive_key = self.KEYS[axis_positive_key]
+            self.axis_negative_key = self.KEYS[axis_negative_key]
+            self.alt_positive_key = self.KEYS[alt_positive_key] if alt_positive_key is not None else self.KEYS['end']
+            self.alt_negative_key = self.KEYS[alt_negative_key] if alt_negative_key is not None else self.KEYS['end']
+        except KeyError as error:
+            print(f'error occurred while mapping input axis {axis_name}: {error}')
+            self.axis_positive_key = None
+            self.axis_negative_key = None
+            self.alt_positive_key = None
+            self.alt_negative_key = None
 
         for i in self.input_axes_files_names:
             i = f'{self.root_input_axes_folder}{i}'
@@ -52,9 +73,11 @@ class Input:
 
     def set_value(self):
         pressed = pygame.key.get_pressed()
-        if pressed[self.axis_positive_key]:
+        if (self.axis_negative_key or self.axis_positive_key) is None:
+            return
+        if pressed[self.axis_positive_key] or pressed[self.alt_positive_key]:
             self.value = +1.0
-        elif pressed[self.axis_negative_key]:
+        elif pressed[self.axis_negative_key] or pressed[self.alt_negative_key]:
             self.value = -1.0
         else:
             self.value = 0
