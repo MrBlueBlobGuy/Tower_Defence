@@ -31,3 +31,7 @@
 ## version 0.0.3.5
     - Bug Fixes
     - Added 'Install' script (Testing to be done)
+
+## version 0.0.3.6
+    - Bug Fixes
+    - Improved the Input System (Now supports 2 Sets of positive and negative Input Groups for each axis
