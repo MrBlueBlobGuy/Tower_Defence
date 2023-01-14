@@ -1,2 +1,6 @@
 venv/
 [Ll]ogfile.txt
+.vscode
+__pycache__/
+.env
+vcs.xml

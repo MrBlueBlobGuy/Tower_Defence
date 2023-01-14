@@ -2,13 +2,15 @@ import sys
 import pygame
 from .Input import Input
 from .Sprite import Sprite
-
+from .Text import Text
 
 class App:
     """Runtime Class For the application"""
 
     Axis_dictionary = {}
     AllSprites = None
+    tb = None
+
 
     def __init__(self, window_title: str, size: tuple) -> None:
         self.Object = None
@@ -34,10 +36,10 @@ class App:
             self.FrameCount += 1
             self.check_exit()
             self.size = pygame.display.get_window_size()
-            pygame.time.Clock().tick(60)
-
             for axis in self.Axis_dictionary:
                 self.Axis_dictionary[axis].set_value()
+
+            pygame.time.Clock().tick(60)
 
     def run(self):
         pygame.init()
@@ -62,12 +64,16 @@ class App:
               alt_positive_key='down',
               input_library_callback=self.update_input_dictionary)
 
+        self.tb = Text("Resources/fonts/Minecrafter.Reg.ttf", self.window, self.size, "Hello")
+
     def runtime(self):
         """Runs every frame
         Similar to 'Update'
         Recommended not to do much complex calculations"""
-        self.Object.rect.x += self.get_input("Horizontal") * 1.5
-        self.Object.rect.y += self.get_input("Vertical") * 1.5
+        self.Object.rect.x += self.get_input("Horizontal") * 3
+        self.Object.rect.y += self.get_input("Vertical") * 3
+        pygame.display.set_caption(f"{self.window_title}, {pygame.time.get_ticks()}")
+        self.tb.render_text()
 
     def update_sprite_library(self, sprite_object: Sprite):
         self.AllSprites.add(sprite_object)

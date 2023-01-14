@@ -51,19 +51,36 @@ class Input:
                  input_library_callback,
                  alt_positive_key=None,
                  alt_negative_key=None):
+
         self.axis_name = axis_name
         self.value = 0
         try:
             self.axis_positive_key = self.KEYS[axis_positive_key]
+        except KeyError as err:
+            print(f'Error occurred while mapping axis {axis_name}: {err}')
+            self.axis_positive_key = None
+        try:
             self.axis_negative_key = self.KEYS[axis_negative_key]
+        except KeyError as err:
+            print(f'Error occurred while mapping axis {axis_name}: {err}')
+            self.axis_negative_key = None
+        try:
             self.alt_positive_key = self.KEYS[alt_positive_key] if alt_positive_key is not None else self.KEYS['end']
+        except KeyError as err:
+            print(f'Error occurred while mapping axis {axis_name}: {err}')
+            self.alt_positive_key = None
+        try:
             self.alt_negative_key = self.KEYS[alt_negative_key] if alt_negative_key is not None else self.KEYS['end']
-        except KeyError as error:
+        except KeyError as err:
+            print(f'Error occurred while mapping axis {axis_name}: {err}')
+            self.axis_negative_key = None
+
+        """except KeyError as error:
             print(f'error occurred while mapping input axis {axis_name}: {error}')
             self.axis_positive_key = None
             self.axis_negative_key = None
             self.alt_positive_key = None
-            self.alt_negative_key = None
+            self.alt_negative_key = None"""
 
         for i in self.input_axes_files_names:
             i = f'{self.root_input_axes_folder}{i}'
@@ -81,6 +98,8 @@ class Input:
             self.value = -1.0
         else:
             self.value = 0
+
+    # TODO : add input axes using input files.
 
     @staticmethod
     def get_input_files(callback):
