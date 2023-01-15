@@ -7,9 +7,10 @@
         - added some basic input
     
     - plans for next update
-        - add some basic audio playing capacity
-        - start game programming
+        - add some basic audio playing capacity 
+        - start game programming                ✅
         - clear app.py(maybe...)
+        - Add Font Rendering                    ✅
 
 ## version 0.0.3.1
     - added GPL-3.0 license
@@ -35,3 +36,10 @@
 ## version 0.0.3.6
     - Bug Fixes
     - Improved the Input System (Now supports 2 Sets of positive and negative Input Groups for each axis
+
+## version 0.0.3.9
+    - Bug Fixes
+    - Text Rendering Added
+    - Updated Readme.md
+
+    (15-01-2023/9:33am)

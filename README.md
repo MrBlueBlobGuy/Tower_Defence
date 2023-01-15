@@ -17,7 +17,6 @@ run `python -m venv venv` to generate a virtual environment
 then to enter the virtual environment run.
 `venv\scripts\activate`
 then  run `pip install -r requirements.txt` to install dependencies.
- Finally, run`python install.py` to load the environment variables.
 ## Running
 #### Windows
 Double-click the `main.pyw` file.
