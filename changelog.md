@@ -43,3 +43,13 @@
     - Updated Readme.md
 
     (15-01-2023/9:33am)
+
+## version 0.0.3.10
+    - Bug Fixes
+    - Improved Text Api
+
+## version 0.0.3.11
+    - Bug Fixes
+    - added sorting (not really in a fast or good way)
+
+    (17-01-2023/12:00pm)

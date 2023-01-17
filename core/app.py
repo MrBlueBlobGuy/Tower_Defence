@@ -3,6 +3,7 @@ import pygame
 from .Input import Input
 from .Sprite import Sprite
 from .Text import Text
+from .global_enable import layers
 
 class App:
     """Runtime Class For the application"""
@@ -13,10 +14,11 @@ class App:
 
 
     def __init__(self, window_title: str, size: tuple) -> None:
+        print("Thanks for trying whatever this is.\nTo report bugs go to 'https://github.com/MrBlueBlobGuy/Tower_Defence/issues'")
+
         self.Object = None
         self.window = None
         self.size = size
-        self.AllSprites = pygame.sprite.Group()
         self.FrameCount = 1
         self.window_title = window_title
 
@@ -28,10 +30,13 @@ class App:
             if self.FrameCount == 1:
                 self.start()
 
-            self.window.fill((0, 255, 255, 100))
+            self.window.fill((255, 0, 255, 0))
             self.runtime()
-            self.AllSprites.update()
-            self.AllSprites.draw(self.window)
+            for layer in layers.sorting_layers:
+                layers.sorting_layers[layer].update()
+                layers.sorting_layers[layer].draw(self.window)
+                
+
             pygame.display.update()
             self.FrameCount += 1
             self.check_exit()
@@ -48,7 +53,14 @@ class App:
 
     def start(self):
         """Run at the first frame before the loop starts"""
-        self.Object = Sprite((0, 200, 255, 0), (20, 20), (0, 0), self.update_sprite_library)
+        layers.add_layer()
+
+        self.Object = Sprite(
+        color=(0, 200, 255, 0), 
+        size = (20, 20), 
+        position = (0, 0), 
+        sprite_library_update=self.update_sprite_library,
+        sorting_layer=0)
 
         Input(axis_name="Horizontal",
               axis_positive_key='d',
@@ -64,7 +76,11 @@ class App:
               alt_positive_key='down',
               input_library_callback=self.update_input_dictionary)
 
-        self.tb = Text("Resources/fonts/Minecrafter.Reg.ttf", self.window, self.size, "Hello")
+        self.tb = Text("Resources/fonts/OpenDyslexic-Bold.otf", 
+        self.window, 
+        self.size,
+        Color_Foreground=(255, 0, 0, 255),
+        text="Hello")
 
     def runtime(self):
         """Runs every frame
@@ -72,11 +88,10 @@ class App:
         Recommended not to do much complex calculations"""
         self.Object.rect.x += self.get_input("Horizontal") * 3
         self.Object.rect.y += self.get_input("Vertical") * 3
-        pygame.display.set_caption(f"{self.window_title}, {pygame.time.get_ticks()}")
         self.tb.render_text()
 
-    def update_sprite_library(self, sprite_object: Sprite):
-        self.AllSprites.add(sprite_object)
+    def update_sprite_library(self, sprite_object:Sprite):
+        layers.add_to_layer(sprite_object.sorting_layer, sprite_object)
 
     def update_input_dictionary(self, axis_name: str, value: Input):
         self.Axis_dictionary[axis_name] = value
